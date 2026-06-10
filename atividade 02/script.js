@@ -1,16 +1,25 @@
 let nomes = [];
 let sexos = [];
 let salarios = [];
+let resultado = "Funcionárias que ganham mais de R$ 5.000,00:\n\n";
+let encontrou = false;
 
 for (let i = 0; i < 5; i++) {
-    nomes.push(prompt("Digite o nome do funcionário " + (i + 1) + ":"));
-    sexos.push(prompt("Digite o sexo do funcionário " + (i + 1) + ":"));
-    salarios.push(parseFloat(prompt("Digite o salário do funcionário " + (i + 1) + ":")));
+    nomes[i] = prompt("Digite o nome do(a) " + (i + 1) + "º funcionário(a):");
+    sexos[i] = prompt("Digite o sexo de " + nomes[i] + " (M ou F):").toUpperCase();
+    // Lê o sexo e usa o .toUpperCase() para garantir que seja salvo sempre em maiúsculo ("M" ou "F")
+    salarios[i] = parseFloat(prompt("Digite o salário de " + nomes[i] + ":"));
 }
 
-alert("Funcionárias mulheres que ganham mais de R$5 mil:");
 for (let i = 0; i < 5; i++) {
     if (sexos[i] === "F" && salarios[i] > 5000) {
-        alert("Nome: " + nomes[i] + ", Sexo: " + sexos[i] + ", Salário: R$" + salarios[i].toFixed(2));
+        resultado += "- " + nomes[i] + " (R$ " + salarios[i] + ")\n";
+        encontrou = true;
     }
 }
+
+if (!encontrou) {
+    resultado = "Nenhuma funcionária cadastrada ganha mais de R$ 5.000,00.";
+}
+
+alert(resultado);
